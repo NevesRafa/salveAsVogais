@@ -9,5 +9,5 @@ import com.kansha.salveasvogais.data.model.WordDetails
 
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun salveAsVogais(): WordDetailsDao
+    abstract fun wordDetailsDao(): WordDetailsDao
 }
