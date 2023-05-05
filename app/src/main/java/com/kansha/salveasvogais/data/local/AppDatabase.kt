@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.kansha.salveasvogais.data.local.dao.WordDetailsDao
 import com.kansha.salveasvogais.data.model.WordDetails
 
-@Database(entities = [WordDetails::class], version = 1)
+@Database(entities = [WordDetails::class], version = 1, exportSchema = true)
 
 abstract class AppDatabase : RoomDatabase() {
 

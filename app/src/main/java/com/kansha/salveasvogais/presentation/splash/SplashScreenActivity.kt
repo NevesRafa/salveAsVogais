@@ -8,10 +8,12 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.kansha.salveasvogais.databinding.ActivitySplashScreenBinding
 import com.kansha.salveasvogais.presentation.home.HomeScreenActivity
+import org.koin.android.ext.android.inject
 
 class SplashScreenActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySplashScreenBinding
+    private val viewModel: SplashScreenViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +23,11 @@ class SplashScreenActivity : AppCompatActivity() {
         setUpImage()
         splashScreenDuration()
 
+        viewModel.loadList()
+
     }
 
-    fun splashScreenDuration() {
+    private fun splashScreenDuration() {
         val splashScreenDuration = 3000L // 3 segundos
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this@SplashScreenActivity, HomeScreenActivity::class.java)
@@ -32,7 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
         }, splashScreenDuration)
     }
 
-    fun setUpImage() {
+    private fun setUpImage() {
         val animation = binding.kansha.drawable as AnimatedImageDrawable
         animation.start()
     }
