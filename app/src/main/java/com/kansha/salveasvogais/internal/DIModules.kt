@@ -3,6 +3,7 @@ package com.kansha.salveasvogais.internal
 import androidx.room.Room
 import com.kansha.salveasvogais.data.local.AppDatabase
 import com.kansha.salveasvogais.domain.WordRepository
+import com.kansha.salveasvogais.presentation.route.RouteViewModel
 import com.kansha.salveasvogais.presentation.splash.SplashScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -26,4 +27,5 @@ val appModule = module {
 
     //viewmodels
     viewModel { SplashScreenViewModel(get()) }
+    viewModel { RouteViewModel(get()) }
 }

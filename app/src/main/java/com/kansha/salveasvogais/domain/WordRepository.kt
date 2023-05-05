@@ -44,4 +44,8 @@ class WordRepository(private val database: WordDetailsDao) {
             database.insertAll(standardWords)
         }
     }
+
+    fun getWordList(): List<WordDetails> {
+        return database.getAllWords()
+    }
 }
