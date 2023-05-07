@@ -7,13 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.kansha.salveasvogais.databinding.ActivitySplashScreenBinding
-import com.kansha.salveasvogais.presentation.home.HomeScreenActivity
+import com.kansha.salveasvogais.presentation.home.HomeActivity
 import org.koin.android.ext.android.inject
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySplashScreenBinding
-    private val viewModel: SplashScreenViewModel by inject()
+    private val viewModel: SplashViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun splashScreenDuration() {
         val splashScreenDuration = 3000L // 3 segundos
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity, HomeScreenActivity::class.java)
+            val intent = Intent(this@SplashActivity, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }, splashScreenDuration)

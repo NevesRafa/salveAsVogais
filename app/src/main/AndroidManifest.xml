@@ -16,13 +16,16 @@
         android:theme="@style/Theme.SalveAsVogais"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.card.CardActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.route.RouteActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.HomeScreenActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.splash.SplashScreenActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

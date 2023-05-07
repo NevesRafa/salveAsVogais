@@ -48,4 +48,8 @@ class WordRepository(private val database: WordDetailsDao) {
     fun getWordList(): List<WordDetails> {
         return database.getAllWords()
     }
+
+    fun loadWord(id: Int): WordDetails? {
+        return database.getById(id)
+    }
 }

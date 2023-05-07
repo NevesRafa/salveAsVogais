@@ -1,10 +1,12 @@
 package com.kansha.salveasvogais.presentation.route
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kansha.salveasvogais.data.model.WordDetails
 import com.kansha.salveasvogais.databinding.ActivityRouteBinding
+import com.kansha.salveasvogais.presentation.card.CardActivity
 import org.koin.android.ext.android.inject
 
 class RouteActivity : AppCompatActivity() {
@@ -20,12 +22,12 @@ class RouteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupList()
-        setupViewModel()
+        setupObservers()
 
         viewModel.loadWordList()
     }
 
-    private fun setupViewModel() {
+    private fun setupObservers() {
         viewModel.loadStateLiveData.observe(this) { state ->
             when (state) {
                 is RouteState.Loading -> {}
@@ -40,12 +42,16 @@ class RouteActivity : AppCompatActivity() {
     }
 
     private fun setupList() {
-        routeAdapter = RouteAdapter()
+        routeAdapter = RouteAdapter { card ->
+            val intent = Intent(this, CardActivity::class.java)
+            intent.putExtra(CardActivity.EXTRA_CARD_DETAILS, card)
+            startActivity(intent)
+        }
 
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager =
-                GridLayoutManager(this@RouteActivity, 3, GridLayoutManager.VERTICAL, false)
+                GridLayoutManager(this@RouteActivity, 4, GridLayoutManager.VERTICAL, false)
             adapter = this@RouteActivity.routeAdapter
         }
     }

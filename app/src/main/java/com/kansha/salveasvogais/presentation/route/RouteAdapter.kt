@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kansha.salveasvogais.data.model.WordDetails
 import com.kansha.salveasvogais.databinding.ItemCardBinding
 
-class RouteAdapter : RecyclerView.Adapter<WordViewHolder>() {
+class RouteAdapter(private val onCardClick: (WordDetails) -> Unit) :
+    RecyclerView.Adapter<WordViewHolder>() {
 
     private val dataset = mutableListOf<WordDetails>()
 
@@ -17,7 +18,7 @@ class RouteAdapter : RecyclerView.Adapter<WordViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
-        holder.bind(dataset[position])
+        holder.bind(dataset[position], onCardClick)
     }
 
     override fun getItemCount() = dataset.size
@@ -32,7 +33,12 @@ class RouteAdapter : RecyclerView.Adapter<WordViewHolder>() {
 class WordViewHolder(private val binding: ItemCardBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(word: WordDetails) {
+    fun bind(word: WordDetails, onCardClick: (WordDetails) -> Unit) {
+
+        binding.root.setOnClickListener {
+            onCardClick(word)
+        }
+
         binding.cardNumber.text = word.id.toString()
     }
 }

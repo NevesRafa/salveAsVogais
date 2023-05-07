@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kansha.salveasvogais.databinding.ActivityHomeScreenBinding
 import com.kansha.salveasvogais.presentation.route.RouteActivity
 
-class HomeScreenActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeScreenBinding
 

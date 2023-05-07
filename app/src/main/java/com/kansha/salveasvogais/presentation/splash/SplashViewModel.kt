@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SplashScreenViewModel(private val repository: WordRepository) : ViewModel() {
+class SplashViewModel(private val repository: WordRepository) : ViewModel() {
 
     fun loadList() {
         viewModelScope.launch {
