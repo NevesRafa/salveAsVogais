@@ -1,10 +1,12 @@
 package com.kansha.salveasvogais.presentation.card
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kansha.salveasvogais.data.model.WordDetails
 import com.kansha.salveasvogais.databinding.ActivityWordBinding
+import com.kansha.salveasvogais.presentation.result.GameWonActivity
+import com.kansha.salveasvogais.presentation.result.LostGameActivity
 import org.koin.android.ext.android.inject
 
 class CardActivity : AppCompatActivity() {
@@ -39,9 +41,8 @@ class CardActivity : AppCompatActivity() {
             when (state) {
                 is CardState.InitGame -> setupGame(state)
                 is CardState.UpdateWord -> setupUpdateWord(state)
-                is CardState.GameWon -> showGameResult("DEu Certo")
-                is CardState.LostGame -> showGameResult("DEu Ruim")
-                is CardState.Error -> {}
+                is CardState.GameWon -> showGameResultWon()
+                is CardState.LostGame -> showGameResultLost()
             }
         }
     }
@@ -93,7 +94,14 @@ class CardActivity : AppCompatActivity() {
         }
     }
 
-    private fun showGameResult(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun showGameResultWon() {
+        val intent = Intent(this, GameWonActivity::class.java)
+        startActivity(intent)
     }
+
+    private fun showGameResultLost() {
+        val intent = Intent(this, LostGameActivity::class.java)
+        startActivity(intent)
+    }
+
 }
